@@ -1,12 +1,16 @@
 const express = require('express')
 const routes = require('./routes/routes.js')
 
+
 const app = express()
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8024
+
+const qs = require('querystring');
 
 
+	
 app.get('/', (req, res) => {
- // res.send('Everything seems fine here')
+  res.send('Everything seems fine here')
 
 
 var mysql      = require('mysql');
@@ -19,13 +23,27 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
-  if (error) throw error;
-  console.log('The solution is: ', results[0].solution);
-});
+
+
+  connection.query("SELECT * FROM conta", function (err, result, fields) {
+    if (err) throw err;
+
+     Object.keys(result).forEach(function(key) {
+      var row = result[key];
+
+      var resultado = "login=" + row.login + ";" + "senha=" + row.senha + ";" + "cod_usario=" + row.cod_usario + ";"
+      console.log(qs.parse(resultado, ';', '='));
+  
+    });
+   
+  });
+
+
 
 connection.end();
 })
+
+
 
 app.get('/api/getPrograms/:userId', routes.getPrograms)
 
