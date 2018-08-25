@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 8024
 
 const qs = require('querystring');
 
-
+var resultjason = [];
 	
 app.get('/', (req, res) => {
   res.send('Everything seems fine here')
@@ -20,30 +20,24 @@ var connection = mysql.createConnection({
   password : 'sDeX695SpDGpLXWq',
   database : 'milhas'
 });
+;
 
 connection.connect();
 
-
-
   connection.query("SELECT * FROM conta", function (err, result, fields) {
     if (err) throw err;
+	Object.keys(result).forEach(function(key) {
 
-     Object.keys(result).forEach(function(key) {
-      var row = result[key];
-
-      var resultado = "login=" + row.login + ";" + "senha=" + row.senha + ";" + "cod_usario=" + row.cod_usario + ";"
-      console.log(qs.parse(resultado, ';', '='));
-  
+    var format = qs.parse(`login=${result[key].login};senha=${result[key].senha};cod_usario=${result[key].cod_usario};`, ';', '=')
+    
+    console.log(format)
     });
    
   });
 
 
-
 connection.end();
 })
-
-
 
 app.get('/api/getPrograms/:userId', routes.getPrograms)
 
