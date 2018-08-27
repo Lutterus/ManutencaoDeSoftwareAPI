@@ -1,6 +1,6 @@
-INSERT INTO USUARIO (`cod_usuario`, `email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES (1, "fulano@hotmail.com", "fulano", 111111111, 90, 90, 1);
-INSERT INTO USUARIO (`cod_usuario`, `email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES (2, "ciclano@hotmail.com", "ciclano", 222222222, 90, 90, 1);
-INSERT INTO USUARIO (`cod_usuario`, `email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES (3, "beltrano@hotmail.com", "beltrano", 333333333, 0, 0, 0);
+INSERT INTO USUARIOs (`cod_usuario`, `email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES (1, "fulano@hotmail.com", "fulano", 111111111, 90, 90, 1);
+INSERT INTO USUARIOs (`cod_usuario`, `email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES (2, "ciclano@hotmail.com", "ciclano", 222222222, 90, 90, 1);
+INSERT INTO USUARIOs (`cod_usuario`, `email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES (3, "beltrano@hotmail.com", "beltrano", 333333333, 0, 0, 0);
 
 INSERT INTO CONTA (`login`, `senha`, `cod_usario`) VALUES ("fulano", 123, 1);
 INSERT INTO CONTA (`login`, `senha`, `cod_usario`) VALUES ("ciclano", 123, 2);

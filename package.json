@@ -4,7 +4,7 @@
   "description": "API for AGES project: Supermilhas",
   "main": "index.js",
   "scripts": {
-    "start": "node source/app.js",
+    "start": "nodemon source/app.js",
     "test": "mocha tests/*.test.js"
   },
   "repository": {
@@ -23,6 +23,7 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
+    "nodemon": "^1.18.3",
     "sinon-chai": "^3.2.0"
   }
 }

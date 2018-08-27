@@ -15,14 +15,10 @@ connection
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-const Programa = require('./models/index.js')(connection)
 
 const startApp = () => {
   app.get('/', (req, res) => {
-    Programa.findOne({})
-      .then(data => {
-        res.send('DATA: '+data)
-      })
+    res.send('Everything seems fine here')
     
   })
   
@@ -30,11 +26,19 @@ const startApp = () => {
   
   app.listen(PORT, () => {
     console.log(`Started application at port: ${PORT}`)
-  })
-  
-  
+  })  
 }
 
 connection.sync()
+  .then(() => {
+
+    const { Usuario } = require('./models/index.js')(connection)
+    Usuario.findAll()
+      .then(data => {
+        console.log('DATA: '+data)
+      })
+      .catch(err => console.log('error: \n'+JSON.stringify(err)))
+      
+  })
   .then(startApp())
   .catch(err => console.log(err))
