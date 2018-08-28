@@ -33,7 +33,7 @@ connection.sync()
   .then(() => {
 
     const { Usuario } = require('./models/index.js')(connection)
-    Usuario.findAll()
+    Usuario.Usuario.findAll()
       .then(data => {
         console.log('DATA: '+data)
       })

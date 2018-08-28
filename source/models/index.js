@@ -1,11 +1,11 @@
 const sequelize = require('sequelize')
-const programa = require('./Programa').Programa
-const conta = require('./Conta').Conta
-const milha = require('./Milha').Milha
-const usuario = require('./Usuario').Usuario
+const programa = require('./Programa')
+const conta = require('./Conta')
+const milha = require('./Milha')
+const usuario = require('./Usuario')
 
 module.exports = db => {
-    const Programa = programa(db).Programa
+    const Programa = programa(db)
     const Conta = conta(db)
     const Milha = milha(db)
     const Usuario = usuario(db)
