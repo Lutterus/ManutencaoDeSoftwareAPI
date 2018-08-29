@@ -1,5 +1,5 @@
 const getPrograms = Programa => (req, res) => {
-  Programa.findAll()
+  Programa.findAll({ where: {contaLogin: 'ciclano'}})
     .then(programas => {
       res.send(programas)
     })

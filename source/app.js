@@ -16,8 +16,8 @@ const startApp = () => {
     res.send('Everything seems fine here')
     
   })
-  app.get('/api/getPrograms', routes.getPrograms)
-  
+  app.get('/api/getPrograms', routes.getPrograms),
+  app.get('/api/getMiles', routes.getMiles)
   app.use(routes.notFound)
   
   app.listen(PORT, () => {
