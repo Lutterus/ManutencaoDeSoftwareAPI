@@ -1,8 +1,9 @@
 // Routes
-const mockedGetPrograms = require('./programs/mockedGetPrograms')
+const getPrograms = require('./programs/all.get')
+const notFound = require('./404/notFound')
 // Dependencies
-// ....
 
-module.exports = {
-  getPrograms: mockedGetPrograms()
-}
+module.exports = models => ({
+  getPrograms: getPrograms(models.Programa),
+  notFound: notFound()
+})

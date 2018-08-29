@@ -9,5 +9,6 @@ module.exports = db => {
     const Conta = conta(db)
     const Milha = milha(db)
     const Usuario = usuario(db)
+    
     return { Usuario, Programa, Conta, Milha }
 }

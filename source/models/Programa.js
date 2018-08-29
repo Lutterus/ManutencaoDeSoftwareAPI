@@ -16,5 +16,5 @@ module.exports = db => {
         timestamps  : false
     })
 
-    return {Programa}
+    return Programa
 }

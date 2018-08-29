@@ -1,44 +1,30 @@
 const express = require('express')
-const routes = require('./routes/routes.js')
 const { PORT } = require('../settings.js')
 const DB = require('./database.js')
-const connection = DB.connect()
+const db_connection = DB.connect()
 
-const app = express()
+const modelsInitializer = require('./models/index.js')
+const models = modelsInitializer(db_connection)
 
-
-connection
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+const routesInitializer = require('./routes/routes.js')
+const routes = routesInitializer(models)
 
 const startApp = () => {
+  const app = express()
+
   app.get('/', (req, res) => {
     res.send('Everything seems fine here')
     
   })
+  app.get('/api/getPrograms', routes.getPrograms)
   
-  app.get('/api/getPrograms/:userId', routes.getPrograms)
+  app.use(routes.notFound)
   
   app.listen(PORT, () => {
     console.log(`Started application at port: ${PORT}`)
   })  
 }
 
-connection.sync()
-  .then(() => {
-
-    const { Usuario } = require('./models/index.js')(connection)
-    Usuario.Usuario.findAll()
-      .then(data => {
-        console.log('DATA: '+data)
-      })
-      .catch(err => console.log('error: \n'+JSON.stringify(err)))
-      
-  })
+db_connection.sync()
   .then(startApp())
   .catch(err => console.log(err))

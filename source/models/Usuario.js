@@ -1,9 +1,7 @@
-//INSERT INTO USUARIOs (`cod_usuario`, `email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`)
-
 const sequelize = require('sequelize')
 
 module.exports = db => {
-    const Usuario = db.define('usuarios', {
+    const Usuario = db.define('usuario', {
         cod_usuario: {
             type:sequelize.INTEGER,
             primaryKey: true
@@ -14,8 +12,7 @@ module.exports = db => {
        aviso_expiracao_telefone: sequelize.INTEGER,
        aviso_expiracao_email: sequelize.INTEGER,
        oferta_compra: sequelize.INTEGER
-    }, {
-        timestamps  : false
-    });
-    return {Usuario}
+    })
+
+    return Usuario
 }

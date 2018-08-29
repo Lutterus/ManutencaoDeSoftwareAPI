@@ -14,5 +14,5 @@ module.exports = db => {
         timestamps  : false
     })
 
-    return {Conta}
+    return Conta
 }

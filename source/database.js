@@ -4,7 +4,7 @@ const {DATABASE_URL} = require('../settings.js')
 
 module.exports = {
   connect() {
-    return new Sequelize(DATABASE_URL, {
+    const db_connection = new Sequelize(DATABASE_URL, {
       dialect: 'mysql',
       operatorsAliases: {
         $and: Op.and,
@@ -16,5 +16,19 @@ module.exports = {
         $like: Op.like
       }
     })
+
+    this.testConnection(db_connection)
+
+    return db_connection
+  },
+  testConnection(connection) {
+    connection
+      .authenticate()
+      .then(() => {
+        console.log('Connection has been established successfully.');
+      })
+      .catch(err => {
+        console.error('Unable to connect to the database:', err);
+      });
   }
 }
