@@ -1,5 +1,5 @@
 const getMiles = Milha => (req, res) => {
-  Milha.findAll({ where: {contaLogin: 'ciclano'} })
+  Milha.findAll({ where: {contaLogin: 'ciclano', cod_programa: '21'} })
     .then(milhas => {
       res.send(milhas)
     })
