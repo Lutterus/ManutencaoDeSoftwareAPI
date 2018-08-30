@@ -6,6 +6,7 @@ module.exports = {
   connect() {
     const db_connection = new Sequelize(DATABASE_URL, {
       dialect: 'mysql',
+      logging: false,
       operatorsAliases: {
         $and: Op.and,
         $or: Op.or,
@@ -25,10 +26,10 @@ module.exports = {
     connection
       .authenticate()
       .then(() => {
-        console.log('Connection has been established successfully.');
+        console.log('[MYSQL] Connection has been established successfully.');
       })
       .catch(err => {
-        console.error('Unable to connect to the database:', err);
+        console.error('[MYSQL] Unable to connect to the database:', JSON.stringify(err));
       });
   }
 }

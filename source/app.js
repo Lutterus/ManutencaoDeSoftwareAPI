@@ -1,7 +1,9 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const { PORT } = require('../settings.js')
 const DB = require('./database.js')
 const db_connection = DB.connect()
+
 
 const modelsInitializer = require('./models/index.js')
 const models = modelsInitializer(db_connection)
@@ -12,17 +14,17 @@ const routes = routesInitializer(models)
 const startApp = () => {
   const app = express()
 
-  app.get('/', (req, res) => {
-    res.send('Everything seems fine here')
-    
-  })
-  app.get('/api/getPrograms', routes.getPrograms),
-  app.get('/api/getMiles', routes.getMiles)
-  app.use(routes.notFound)
-  
-  app.listen(PORT, () => {
-    console.log(`Started application at port: ${PORT}`)
-  })  
+  app
+    .use(bodyParser.json())
+    .get('/', (req, res) => {
+      res.send('Everything seems fine here')
+    })
+    .get('/api/getPrograms', routes.getPrograms)
+    .get('/api/getMiles', routes.getMiles)
+    .use(routes.notFound)
+    .listen(PORT, () => {
+      console.log(`Started application at port: ${PORT}`)
+    })  
 }
 
 db_connection.sync()
