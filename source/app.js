@@ -1,21 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const docs = require('./docs')
 const { PORT } = require('../settings.js')
-const DB = require('./database.js')
-const db_connection = DB.connect()
-
-
-const swaggerJSDoc = require('swagger-jsdoc')
-const swaggerUi = require('swagger-ui-express')
-const options = require('../swagger')
-const swaggerSpec = swaggerJSDoc(options)
-/////////////qqq
-
+const docs = require('./docs')
 const modelsInitializer = require('./models/index.js')
-const models = modelsInitializer(db_connection)
-
 const routesInitializer = require('./routes/routes.js')
+const DB = require('./database.js')
+
+const db_connection = DB.connect()
+const models = modelsInitializer(db_connection)
 const routes = routesInitializer(models)
 
 const startApp = () => {
