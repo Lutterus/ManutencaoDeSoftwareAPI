@@ -1,9 +1,16 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const docs = require('./docs')
 const { PORT } = require('../settings.js')
 const DB = require('./database.js')
 const db_connection = DB.connect()
 
+
+const swaggerJSDoc = require('swagger-jsdoc')
+const swaggerUi = require('swagger-ui-express')
+const options = require('../swagger')
+const swaggerSpec = swaggerJSDoc(options)
+/////////////qqq
 
 const modelsInitializer = require('./models/index.js')
 const models = modelsInitializer(db_connection)
@@ -15,10 +22,9 @@ const startApp = () => {
   const app = express()
 
   app
+    .use(express.static(__dirname + '/public'))
     .use(bodyParser.json())
-    .get('/', (req, res) => {
-      res.send('Everything seems fine here')
-    })
+    .use('/api/docs', docs.serve, docs.setup)
     .get('/api/getPrograms', routes.getPrograms)
     .get('/api/getMiles', routes.getMiles)
     .use(routes.notFound)
