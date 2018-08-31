@@ -14,11 +14,13 @@ const startApp = () => {
   const app = express()
 
   app
+    .set('json spaces', 2)
     .use(express.static(__dirname + '/public'))
     .use(bodyParser.json())
     .use('/api/docs', docs.serve, docs.setup)
     .get('/api/getPrograms', routes.getPrograms)
     .get('/api/getMiles', routes.getMiles)
+    .use(routes.errorHandler)
     .use(routes.notFound)
     .listen(PORT, () => {
       console.log(`Started application at port: ${PORT}`)

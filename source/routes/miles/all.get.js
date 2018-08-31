@@ -4,10 +4,8 @@ const getMiles = Milha => (req, res) => {
       res.send(milhas)
     })
     .catch(err => {
-      console.error(JSON.stringify(err))
-      //TO DO
-      //enviar para pagina de erro
-      res.send(err)
+      console.error(`[ERROR] ${JSON.stringify(err)}`)
+      next({ status: 500, message: "internal_server_error" })
     })
 }
 

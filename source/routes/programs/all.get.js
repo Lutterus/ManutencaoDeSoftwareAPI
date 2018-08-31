@@ -1,12 +1,11 @@
-const getPrograms = Programa => (req, res) => {
+const getPrograms = Programa => (req, res, next) => {
   Programa.findAll({ where: { contaLogin: 'ciclano' } })
     .then(programas => {
       res.send(programas)
     })
     .catch(err => {
-      console.error(JSON.stringify(err))
-      
-      res.send(err)
+      console.error(`[ERROR] ${JSON.stringify(err)}`)
+      next({status:500, message: "internal_server_error"})
     })
 }
 
