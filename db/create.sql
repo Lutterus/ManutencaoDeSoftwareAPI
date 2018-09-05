@@ -22,6 +22,12 @@ CREATE TABLE IF NOT EXISTS contas (
     REFERENCES usuarios (`cod_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+    
+CREATE TABLE IF NOT EXISTS defaultProgramas (
+	`nome` VARCHAR(45) NOT NULL,
+    `text` LONGTEXT NOT NULL,
+    PRIMARY KEY (`nome`)
+);
 
 CREATE TABLE IF NOT EXISTS programas (
   `cod_programa` INT NOT NULL,
@@ -32,11 +38,15 @@ CREATE TABLE IF NOT EXISTS programas (
   `contaSenha` VARCHAR(45) NULL,
   PRIMARY KEY (`cod_programa`),
   INDEX `contaFK_idx` (`contaLogin` ASC),
+  INDEX `defaultProgramasListfk_idx` (`nome` ASC),
   CONSTRAINT `contaFK`
     FOREIGN KEY (`contaLogin`)
     REFERENCES contas (`login`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `defaultProgramasList` 
+	FOREIGN KEY (`nome`)
+    REFERENCES defaultProgramas (`nome`)
+    ON DELETE NO ACTION ON UPDATE NO ACTION);
 
 CREATE TABLE IF NOT EXISTS milhas (
     `cod_milha` INT NOT NULL,
