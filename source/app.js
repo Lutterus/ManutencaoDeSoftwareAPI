@@ -19,6 +19,7 @@ const startApp = () => {
     .use(bodyParser.json())
     .use('/api/docs', docs.serve, docs.setup)
     .get('/api/getPrograms', routes.getPrograms)
+    .get('/api/getListPrograms', routes.getListPrograms)
     .get('/api/getMiles', routes.getMiles)
     .use(routes.errorHandler)
     .use(routes.notFound)
