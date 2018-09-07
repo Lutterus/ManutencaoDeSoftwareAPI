@@ -8,7 +8,7 @@ module.exports = db => {
            type: sequelize.STRING,
            primaryKey: true
        },
-       text: sequelize.STRING
+       text: sequelize.TEXT
     }, {
         timestamps  : false
     })

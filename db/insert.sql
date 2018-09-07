@@ -6,9 +6,9 @@ INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("fulano", 123, 1);
 INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("ciclano", 123, 2);
 INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("beltrano", 123, 3);
 
-INSERT INTO defaultprogramas(`nome`,`text`) VALUES("programa1", "");
-INSERT INTO defaultprogramas(`nome`,`text`) VALUES("programa2", "");
-INSERT INTO defaultprogramas(`nome`,`text`) VALUES("programa3", "");
+INSERT INTO listprogramas(`nome`,`text`) VALUES("programa1", "");
+INSERT INTO listprogramas(`nome`,`text`) VALUES("programa2", "");
+INSERT INTO listprogramas(`nome`,`text`) VALUES("programa3", "");
 
 INSERT INTO programas (`cod_programa`, `nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES (10, "programa1", 4000, NULL, "fulano", 123);
 INSERT INTO programas (`cod_programa`, `nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES (11, "programa2", 4000, NULL, "fulano", 123);
