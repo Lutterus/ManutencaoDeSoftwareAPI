@@ -1,5 +1,5 @@
 const getListPrograms = ListPrograma => (req, res, next) => {
-    ListPrograma.findAll()
+    ListPrograma.findAll({attributes: ['nome']})
       .then(listprogramas => {
         res.send(listprogramas)
       })
