@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS contas (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
-CREATE TABLE IF NOT EXISTS listprogramas (
+CREATE TABLE IF NOT EXISTS programa_defaults (
 	`nome` VARCHAR(45) NOT NULL,
     `text` LONGTEXT NOT NULL,
     PRIMARY KEY (`nome`)
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS programas (
     ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `defaultProgramasList` 
 	FOREIGN KEY (`nome`)
-    REFERENCES listprogramas (`nome`)
+    REFERENCES programa_defaults (`nome`)
     ON DELETE NO ACTION ON UPDATE NO ACTION);
 
 CREATE TABLE IF NOT EXISTS milhas (
