@@ -6,9 +6,9 @@ INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("fulano", 123, 1);
 INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("ciclano", 123, 2);
 INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("beltrano", 123, 3);
 
-INSERT INTO programa_defaults(`nome`,`text`) VALUES("programa1", "");
-INSERT INTO programa_defaults(`nome`,`text`) VALUES("programa2", "");
-INSERT INTO programa_defaults(`nome`,`text`) VALUES("programa3", "");
+INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("programa1", "https://http2.mlstatic.com/locomotiva-motorizada-thomas-seus-amigos-thomas-10cm-trem-D_NQ_NP_602328-MLB26013645215_092017-F.jpg");
+INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("programa2", "https://vignette.wikia.nocookie.net/jayjay/images/f/f8/Fun_meet_savannah_lg.jpg/revision/latest?cb=20120725183431");
+INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("programa3", "https://i.imgur.com/qbjvM45.jpg");
 
 INSERT INTO programas (`cod_programa`, `nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES (10, "programa1", 4000, NULL, "fulano", 123);
 INSERT INTO programas (`cod_programa`, `nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES (11, "programa2", 4000, NULL, "fulano", 123);

@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS contas (
     
 CREATE TABLE IF NOT EXISTS programa_defaults (
 	`nome` VARCHAR(45) NOT NULL,
-    `text` LONGTEXT NOT NULL,
+  `imagem` VARCHAR(4000) NOT NULL,
     PRIMARY KEY (`nome`)
 );
 

@@ -1,17 +1,20 @@
 const sequelize = require('sequelize')
+//const programa = require('./Programa')
 
 module.exports = db => {
     // `cod_programa`, `nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`
 
-    const Programa_default = db.define('programa_defaults', {
+    const ProgramaDefault = db.define('programa_defaults', {
        nome: {
            type: sequelize.STRING,
            primaryKey: true
        },
-       text: sequelize.TEXT
+       imagem: sequelize.STRING
     }, {
         timestamps  : false
     })
 
-    return Programa_default
+    //ProgramaDefault.belongsToMany(programa.Programa, {through: 'ProgramaDefaultConnect'});
+
+    return ProgramaDefault
 }

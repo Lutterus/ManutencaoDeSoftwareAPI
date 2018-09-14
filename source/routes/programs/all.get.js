@@ -1,5 +1,7 @@
-const getPrograms = Programa => (req, res, next) => {
-  Programa.findAll()
+const getPrograms = (Programa, ProgramaDefault) => (req, res, next) => {
+  Programa.findAll({ include:
+		[{ model: ProgramaDefault }] 
+	})
     .then(programas => {
       res.send(programas)
     })

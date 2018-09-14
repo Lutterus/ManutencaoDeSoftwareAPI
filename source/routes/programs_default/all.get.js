@@ -1,5 +1,5 @@
-const getPrograma_default = Programa_default => (req, res, next) => {
-    Programa_default.findAll()
+const getProgramsDefault = ProgramaDefault => (req, res, next) => {
+    ProgramaDefault.findAll()
       .then(programa_defaults => {
         res.send(programa_defaults)
       })
@@ -9,5 +9,5 @@ const getPrograma_default = Programa_default => (req, res, next) => {
       })
   }
   
-  module.exports = getPrograma_default
+  module.exports = getProgramsDefault
   
