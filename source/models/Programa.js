@@ -4,6 +4,7 @@ module.exports = db => {
     // `cod_programa`, `nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`
 
     const Programa = db.define('programas', {
+       cod_programa: sequelize.INTEGER,
        nome: {
            type: sequelize.STRING,
            primaryKey: true
