@@ -12,6 +12,8 @@ module.exports = db => {
        aviso_expiracao_telefone: sequelize.INTEGER,
        aviso_expiracao_email: sequelize.INTEGER,
        oferta_compra: sequelize.INTEGER
+    }, {
+        timestamps  : false
     })
 
     return Usuario

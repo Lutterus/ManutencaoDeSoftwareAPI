@@ -22,6 +22,7 @@ const startApp = () => {
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
     .get('/api/getMiles', routes.getMiles)
     .post('/api/addMile', routes.addMile)
+    .post('/api/login', routes.login)
     .use(routes.errorHandler)
     .use(routes.notFound)
     .listen(PORT, () => {
