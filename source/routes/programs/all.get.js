@@ -1,11 +1,12 @@
 const getPrograms = (Programa, ProgramaDefault) => (req, res, next) => {
+  const name = req.params.id_user 
   const {contaLogin} = req.body
   Programa.findAll({ 
     include: [{ 
       model: ProgramaDefault 
     }],
     where: {
-      contaLogin: req.body.user
+      contaLogin: name
     }
 	})
     .then(programas => {

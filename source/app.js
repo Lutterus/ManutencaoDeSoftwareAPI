@@ -18,7 +18,7 @@ const startApp = () => {
     .use(express.static(__dirname + '/public'))
     .use(bodyParser.json())
     .use('/api/docs', docs.serve, docs.setup)
-    .get('/api/getPrograms', routes.getPrograms)
+    .get('/api/getPrograms/:id_user', routes.getPrograms)
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
     .get('/api/getMiles', routes.getMiles)
     .post('/api/addMile', routes.addMile)
