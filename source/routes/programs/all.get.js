@@ -1,6 +1,12 @@
 const getPrograms = (Programa, ProgramaDefault) => (req, res, next) => {
-  Programa.findAll({ include:
-		[{ model: ProgramaDefault }] 
+  const {contaLogin} = req.body
+  Programa.findAll({ 
+    include: [{ 
+      model: ProgramaDefault 
+    }],
+    where: {
+      contaLogin: req.body.user
+    }
 	})
     .then(programas => {
       res.send(programas)
