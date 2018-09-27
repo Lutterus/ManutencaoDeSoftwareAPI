@@ -4,7 +4,11 @@ const getMiles = Milha => (req, res) => {
   Milha.findAll({ 
   		where: {
   			contaLogin: id_user, cod_programa: cod_program
-  		} 
+  		},
+  		order: [
+            ['dt_expiracao', 'DESC']
+        ]
+
   	})
     .then(milhas => {
       res.send(milhas)
