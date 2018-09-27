@@ -20,7 +20,7 @@ const startApp = () => {
     .use('/api/docs', docs.serve, docs.setup)
     .get('/api/getPrograms/:id_user', routes.getPrograms)
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
-    .get('/api/getMiles', routes.getMiles)
+    .get('/api/getMiles/:id_user/:cod_program', routes.getMiles)
     .post('/api/addMile', routes.addMile)
     .post('/api/login', routes.login)
     .use(routes.errorHandler)
