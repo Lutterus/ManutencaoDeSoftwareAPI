@@ -16,7 +16,7 @@ module.exports = models => ({
   addMile: addMile(models.Milha, models.Programa),
   addUser: addUser(models.Usuario, models.Conta),
   getCurrentUser: getCurrentUser(),
-  getPrograms: getPrograms(models.Programa, models.ProgramaDefault),
+  getPrograms: getPrograms(models.Programa, models.ProgramaDefault, models.Milha),
   getProgramsDefault: getProgramsDefault(models.ProgramaDefault),
   getMiles: getMiles(models.Milha),
   login: login(models.Conta),

@@ -2,14 +2,15 @@ CREATE DATABASE super_milhas;
 USE super_milhas;
 
 CREATE TABLE IF NOT EXISTS usuarios (
-  `cod_usuario` INT NOT NULL,
+  `cod_usuario` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `nome` VARCHAR(300) NOT NULL,
   `telefone` INT NULL,
   `aviso_expiracao_telefone` INT NULL,
   `aviso_expiracao_email` INT NULL,
   `oferta_compra` INT NOT NULL,
-  PRIMARY KEY (`cod_usuario`));
+  PRIMARY KEY (`cod_usuario`))
+  AUTO_INCREMENT=1000;
   
 CREATE TABLE IF NOT EXISTS contas (
   `login` VARCHAR(45) NOT NULL,
@@ -30,7 +31,7 @@ CREATE TABLE IF NOT EXISTS programa_defaults (
 );
 
 CREATE TABLE IF NOT EXISTS programas (
-  `cod_programa` INT NOT NULL,
+  `cod_programa` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `somaMilhas` INT NULL,
   `milha_expiracao_maisProxima` INT NULL,
@@ -46,10 +47,11 @@ CREATE TABLE IF NOT EXISTS programas (
   CONSTRAINT `defaultProgramasList` 
 	FOREIGN KEY (`nome`)
     REFERENCES programa_defaults (`nome`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION);
+    ON DELETE NO ACTION ON UPDATE NO ACTION)
+    AUTO_INCREMENT = 1000;
 
 CREATE TABLE IF NOT EXISTS milhas (
-    `cod_milha` INT NOT NULL,
+    `cod_milha` INT NOT NULL AUTO_INCREMENT,
     `quantidade` VARCHAR(45) NOT NULL,
     `dt_expiracao` DATE NOT NULL,
     `cod_programa` INT NOT NULL,
@@ -63,4 +65,5 @@ CREATE TABLE IF NOT EXISTS milhas (
     CONSTRAINT `contaFKMilhas` FOREIGN KEY (`contaLogin`)
         REFERENCES programas (`contaLogin`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)
+AUTO_INCREMENT=1000;

@@ -1,4 +1,4 @@
-const getPrograms = (Programa, ProgramaDefault) => (req, res, next) => {
+const getPrograms = (Programa, ProgramaDefault, Milha) => (req, res, next) => {
   const name = req.params.id_user 
   const {contaLogin} = req.body
   Programa.findAll({ 
@@ -10,7 +10,29 @@ const getPrograms = (Programa, ProgramaDefault) => (req, res, next) => {
     }
 	})
     .then(programas => {
-      res.send(programas)
+      var listaFinal = []
+      var contPrograma = 0;
+      programas.forEach(function(programa) {
+
+        Milha.findOne({ where: {
+          cod_milha: programa.dataValues.milha_expiracao_maisProxima
+          
+        } }).then(milha => {
+          let novoPrograma = {
+            cod_programa: programa.dataValues.cod_programa,
+            nome: programa.dataValues.nome,
+            somaMilhas: programa.dataValues.somaMilhas,
+            milha_expiracao_maisProxima: milha.dataValues,
+            contaLogin: programa.dataValues.contaLogin,
+            contaSenha: programa.dataValues.contaSenha
+          }
+          listaFinal.push(novoPrograma)
+          contPrograma++
+          if(contPrograma === programas.length) {
+            res.send(listaFinal)
+          }
+        })
+      });
     })
     .catch(err => {
       console.error(`[ERROR] ${JSON.stringify(err)}`)
