@@ -10,15 +10,16 @@ INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("programa1", "https://http
 INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("programa2", "https://vignette.wikia.nocookie.net/jayjay/images/f/f8/Fun_meet_savannah_lg.jpg/revision/latest?cb=20120725183431");
 INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("programa3", "https://i.imgur.com/qbjvM45.jpg");
 
-INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa1", 4000, NULL, "fulano@hotmail.com", 123);
-INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa1", 5000, NULL, "ciclano@hotmail.com", 123);
-INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa2", 5000, NULL, "fulano@hotmail.com", 123);
-INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa2", 5000, NULL, "ciclano@hotmail.com", 123);
-INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa3", 5000, NULL, "ciclano@hotmail.com", 123);
-INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa3", 6000, NULL, "beltrano@hotmail.com", 123);
+INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa1", 4000, 1001, "fulano@hotmail.com", 123);
+INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa1", 5000, 1003, "ciclano@hotmail.com", 123);
+INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa2", 5000, 1002, "fulano@hotmail.com", 123);
+INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa2", 5000, 1006, "ciclano@hotmail.com", 123);
+INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa3", 5000, 1010, "ciclano@hotmail.com", 123);
+INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("programa3", 6000, 1004, "beltrano@hotmail.com", 123);
 
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181215, (select cod_programa from programas where nome = "programa1" and contaLogin = "fulano@hotmail.com"), "fulano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181214, (select cod_programa from programas where nome = "programa1" and contaLogin = "fulano@hotmail.com"), "fulano@hotmail.com");
+INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181218, (select cod_programa from programas where nome = "programa2" and contaLogin = "fulano@hotmail.com"), "fulano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181213, (select cod_programa from programas where nome = "programa1" and contaLogin = "ciclano@hotmail.com"), "ciclano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181212, (select cod_programa from programas where nome = "programa3" and contaLogin = "beltrano@hotmail.com"), "ciclano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2500, 20181211, (select cod_programa from programas where nome = "programa2" and contaLogin = "ciclano@hotmail.com"), "ciclano@hotmail.com");
