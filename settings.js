@@ -3,5 +3,5 @@ module.exports = {
     DB_PASSWORD: process.env.DB_PASSWORD,
     DATABASE_URL: process.env.DATABASE_URL 
       ? process.env.DATABASE_URL 
-      : `mysql://root:senha@localhost/super_milhas`
+      : `mysql://root:senha@milhasDB/super_milhas`
   }

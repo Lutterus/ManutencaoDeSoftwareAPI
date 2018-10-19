@@ -1,0 +1,39 @@
+# How to run:
+
+version: '2'
+services:
+  milhasDB:
+    container_name: milhasDB
+    image: mysql:5.6
+    expose:
+      - "3306"
+    ports:
+      - "3311:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=senha
+      - MYSQL_DATABASE=super_milhas
+    volumes:
+     - /vol/milhas:/var/lib/mysql
+    networks:
+     - milhas-network
+
+  milhasApi:
+    container_name: milhasApi
+    build:
+      context: .
+      dockerfile: Dockerfile_api
+    image: milhasApi:latest
+    depends_on:
+      - "milhasDB"
+    expose:
+      - "4011"
+    ports:
+      - "4011:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - milhas-network
+    command: ["./wait-for-it.sh", "-t", "0", "milhasDB:3311", "--", "npm","start", ]
+
+networks:
+  milhas-network:
