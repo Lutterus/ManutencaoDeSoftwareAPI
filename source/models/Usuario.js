@@ -4,7 +4,8 @@ module.exports = db => {
     const Usuario = db.define('usuario', {
         cod_usuario: {
             type:sequelize.INTEGER,
-            primaryKey: true
+            primaryKey: true,
+            autoIncrement: true
        },
        email: sequelize.STRING,
        nome: sequelize.STRING,

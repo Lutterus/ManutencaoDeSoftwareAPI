@@ -5,8 +5,9 @@ module.exports = db => {
 
     const Milha = db.define('milhas', {
        cod_milha: {
-        type:sequelize.INTEGER,
-        primaryKey: true
+          type:sequelize.INTEGER,
+          primaryKey: true,
+          autoIncrement: true
        },
        quantidade: sequelize.STRING,
        dt_expiracao: sequelize.DATE,

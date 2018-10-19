@@ -9,51 +9,38 @@ const addMiles = (Milha, Programa) => (req, res, next) => {
 
   		if(program == null) {
   			console.log("[addMiles] Programa não existe, criando novo programa para usuário!")
-  			Programa.max('cod_programa').then(max => {
-			 	Programa.create({
-		  			cod_programa: max+1,
-		  			nome: req.body.program,
-		  			somaMilhas: req.body.miles,
-		  			milha_expiracao_maisProxima: null,
-		  			contaLogin: req.body.user
-		  		}).then(createdProgram => {
-
-		  			Milha.max('cod_milha').then(max => {
-					  	Milha.create({ 
-							cod_milha: max+1, 
-							quantidade: req.body.miles, 
-							dt_expiracao: (req.body.expirationDate ? req.body.expirationDate : new Date()),
-							cod_programa: createdProgram.dataValues.cod_programa,
-							contaLogin: createdProgram.dataValues.contaLogin
-						})
-						.then(mile => {
-						  	console.log('[addMiles] SUCESS!')
-						  	res.writeHead(201, {'Content-Type': 'text/html'});
-							res.end('CREATED');
-						})
-					})
-
-		  		})
-			})
-	  	} else {
-	  		console.log("[addMiles] Programa encontrado!")
-	  		codProgram = program.cod_programa
-
-	  		Milha.max('cod_milha').then(max => {
+		 	Programa.create({
+	  			nome: req.body.program,
+	  			somaMilhas: req.body.miles,
+	  			milha_expiracao_maisProxima: null,
+	  			contaLogin: req.body.user
+	  		}).then(createdProgram => {
 			  	Milha.create({ 
-					cod_milha: max+1, 
 					quantidade: req.body.miles, 
 					dt_expiracao: (req.body.expirationDate ? req.body.expirationDate : new Date()),
-					cod_programa: program.cod_programa,
-					contaLogin: req.body.user
+					cod_programa: createdProgram.dataValues.cod_programa,
+					contaLogin: createdProgram.dataValues.contaLogin
 				})
 				.then(mile => {
 				  	console.log('[addMiles] SUCESS!')
 				  	res.writeHead(201, {'Content-Type': 'text/html'});
 					res.end('CREATED');
 				})
+	  		})
+	  	} else {
+	  		console.log("[addMiles] Programa encontrado!")
+	  		codProgram = program.cod_programa
+		  	Milha.create({ 
+				quantidade: req.body.miles, 
+				dt_expiracao: (req.body.expirationDate ? req.body.expirationDate : new Date()),
+				cod_programa: program.cod_programa,
+				contaLogin: req.body.user
 			})
-
+			.then(mile => {
+			  	console.log('[addMiles] SUCESS!')
+			  	res.writeHead(201, {'Content-Type': 'text/html'});
+				res.end('CREATED');
+			})
 	  	}
   		
 	})
