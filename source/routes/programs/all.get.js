@@ -1,6 +1,5 @@
 const getPrograms = (Programa, ProgramaDefault, Milha) => (req, res, next) => {
   const name = req.params.id_user 
-  const {contaLogin} = req.body
   Programa.findAll({ 
     include: [{ 
       model: ProgramaDefault 
