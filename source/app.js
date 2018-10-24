@@ -34,12 +34,13 @@ const startApp = () => {
     .use(passport.initialize())
     .use(passport.session())
     .use('/api/docs', docs.serve, docs.setup)
-    .get('/api/getPrograms/:id_user', routes.authenticate, routes.getPrograms, routes.getMiles)
+    .get('/api/getPrograms/:id_user', routes.getPrograms, routes.getMiles) // routes.authenticate
     .get('/api/user', routes.authenticate, routes.getCurrentUser)
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
     .get('/api/getAllUsersMiles/:page', routes.authenticate, routes.getAllUsersMiles)
-    .get('/api/getMiles/:id_user/:cod_program', routes.authenticate, routes.getMiles)
+    .get('/api/getMiles/:id_user/:cod_program', routes.getMiles) // routes.authenticate
     .post('/api/addMile', routes.authenticate, routes.addMile)
+    .post('/api/deleteMile', routes.deleteMile) // routes.authenticate
     .post('/api/addUser', routes.authenticate, routes.addUser)
     .post('/api/login', passport.authenticate('local', { successRedirect: '/api/user' }))
     .use(routes.errorHandler)
