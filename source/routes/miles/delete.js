@@ -12,13 +12,13 @@ const deleteMile = (Milha) => (req, res, next) => {
 
 	  	} else {
 	  		res.writeHead(404, {'Content-Type': 'text/html'});
-			res.end('NOT FOUND');
+			  res.end('NOT FOUND');
   		}
-	}).then(() => {
- 		console.log('[addMiles] SUCESS!')
-			  	res.writeHead(200, {'Content-Type': 'text/html'});
+	 }).then(() => {
+ 		  console.log('[deleteMile] SUCESS!')
+			  res.writeHead(200, {'Content-Type': 'text/html'});
 				res.end('DELETED');
-	})
+	 })
 	.catch(err => {
       	console.error(`[deleteMile][ERROR] ${err}`)
       	next({ status: 500, message: "internal_server_error" })

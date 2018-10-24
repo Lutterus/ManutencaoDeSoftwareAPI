@@ -1,5 +1,6 @@
 // Routes
 const addMile = require('./miles/add')
+const editMile = require('./miles/edit')
 const deleteMile = require('./miles/delete')
 const addUser = require('./user/add')
 const getPrograms = require('./programs/all.get')
@@ -16,6 +17,7 @@ const authenticate = require('./auth/authenticate')
 module.exports = models => ({
   authenticate: authenticate(),
   addMile: addMile(models.Milha, models.Programa),
+  editMile: editMile(models.Milha),
   deleteMile: deleteMile(models.Milha),
   addUser: addUser(models.Usuario, models.Conta),
   getCurrentUser: getCurrentUser(),

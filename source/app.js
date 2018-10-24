@@ -40,6 +40,7 @@ const startApp = () => {
     .get('/api/getAllUsersMiles/:page', routes.authenticate, routes.getAllUsersMiles)
     .get('/api/getMiles/:id_user/:cod_program', routes.getMiles) // routes.authenticate
     .post('/api/addMile', routes.authenticate, routes.addMile)
+    .post('/api/editMile', routes.editMile) // routes.authenticate
     .post('/api/deleteMile', routes.deleteMile) // routes.authenticate
     .post('/api/addUser', routes.authenticate, routes.addUser)
     .post('/api/login', passport.authenticate('local', { successRedirect: '/api/user' }))

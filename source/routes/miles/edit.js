@@ -1,48 +1,38 @@
-const editMile = (Milha, Programa) => (req, res, next) => {
+const editMile = (Milha) => (req, res, next) => {
 
-  	Programa.findOne({ where: {
-  			nome: req.body.program,
+  	Milha.findOne({ where: {
+  			cod_milha: req.body.cod_milha,
   			contaLogin: req.body.user,
 
-  		} }).then(program => {
-  		// project will be the first entry of the Projects table with the title 'aProject' || null
+  		} }).then(mile => {
 
-  		if(program == null) {
-  			console.log("[addMiles] Programa não existe, criando novo programa para usuário!")
-		 	Programa.create({
-	  			nome: req.body.program,
-	  			somaMilhas: req.body.miles,
-	  			milha_expiracao_maisProxima: null,
-	  			contaLogin: req.body.user
-	  		}).then(createdProgram => {
-			  	Milha.create({ 
-					quantidade: req.body.miles, 
-					dt_expiracao: (req.body.expirationDate ? req.body.expirationDate : new Date()),
-					cod_programa: createdProgram.dataValues.cod_programa,
-					contaLogin: createdProgram.dataValues.contaLogin
+  		if(mile != null) {
+
+  			var qty =  req.body.quantidade
+  			var dt_expiracao = req.body.dt_expiracao
+
+  			if(qty != null && dt_expiracao != null) {
+  				mile.update({
+  					quantidade: qty,
+  					dt_expiracao: dt_expiracao
 				})
-				.then(mile => {
-				  	console.log('[addMiles] SUCESS!')
-				  	res.writeHead(201, {'Content-Type': 'text/html'});
-					res.end('CREATED');
-				})
-	  		})
+
+  			} else {
+  				res.writeHead(404, {'Content-Type': 'text/html'});
+				res.end('EMPTY FIELDS');
+  			}
+  			
+
+  			
 	  	} else {
-	  		console.log("[addMiles] Programa encontrado!")
-	  		codProgram = program.cod_programa
-		  	Milha.create({ 
-				quantidade: req.body.miles, 
-				dt_expiracao: (req.body.expirationDate ? req.body.expirationDate : new Date()),
-				cod_programa: program.cod_programa,
-				contaLogin: req.body.user
-			})
-			.then(mile => {
-			  	console.log('[addMiles] SUCESS!')
-			  	res.writeHead(201, {'Content-Type': 'text/html'});
-				res.end('CREATED');
-			})
+	  		res.writeHead(404, {'Content-Type': 'text/html'});
+			res.end('NOT FOUND');
 	  	}
   		
+	}).then(() => {
+ 		console.log('[editMile] SUCESS!')
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.end('EDITED');
 	})
 	.catch(err => {
       	console.error(`[addMiles][ERROR] ${JSON.stringify(err)}`)
