@@ -3,6 +3,7 @@ const addMile = require('./miles/add')
 const addUser = require('./user/add')
 const getPrograms = require('./programs/all.get')
 const getProgramsDefault = require('./programs_default/all.get')
+const getAllUsersMiles = require('./miles/all.users.miles.get')
 const getMiles = require('./miles/all.get')
 const getCurrentUser = require('./user/me.get')
 const login = require('./user/login')
@@ -18,6 +19,7 @@ module.exports = models => ({
   getCurrentUser: getCurrentUser(),
   getPrograms: getPrograms(models.Programa, models.ProgramaDefault, models.Milha),
   getProgramsDefault: getProgramsDefault(models.ProgramaDefault),
+  getAllUsersMiles: getAllUsersMiles(models.Milha, models.Usuario, models.Programa),
   getMiles: getMiles(models.Milha),
   login: login(models.Conta),
   errorHandler: errorHandler(),

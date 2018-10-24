@@ -15,7 +15,10 @@ module.exports = db => {
     //ProgramaDefault.belongsToMany(Programa, {as: 'Programa'});
     //Programa.hasOne(ProgramaDefault, {foreignKey: 'nome'});
     //ProgramaDefault.belongsTo(Programa);
-    Programa.belongsTo(ProgramaDefault, {foreignKey: 'nome'});
+    Programa.belongsTo(ProgramaDefault, {foreignKey: 'nome'})
     Programa.hasOne(Programa, {foreignKey: 'cod_programa'})
+    Milha.belongsTo(Usuario, {foreignKey: 'contaLogin', targetKey: 'email'})
+    Milha.belongsTo(Programa, {foreignKey: 'cod_programa', targetKey: 'cod_programa'})
+
     return { Usuario, Programa, Conta, Milha, ProgramaDefault }
 }
