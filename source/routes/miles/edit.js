@@ -16,26 +16,25 @@ const editMile = (Milha) => (req, res, next) => {
   					quantidade: qty,
   					dt_expiracao: dt_expiracao
 				})
+				.then(() => {
+					console.log('[editMile] SUCESS!')
+					res.writeHead(200, {'Content-Type': 'text/html'});
+					res.end('EDITED');
+				}) 
 
   			} else {
   				res.writeHead(404, {'Content-Type': 'text/html'});
 				res.end('EMPTY FIELDS');
   			}
   			
-
-  			
 	  	} else {
 	  		res.writeHead(404, {'Content-Type': 'text/html'});
-			res.end('NOT FOUND');
+			res.end('MILE NOT FOUND');
 	  	}
   		
-	}).then(() => {
- 		console.log('[editMile] SUCESS!')
-			res.writeHead(200, {'Content-Type': 'text/html'});
-			res.end('EDITED');
 	})
 	.catch(err => {
-      	console.error(`[addMiles][ERROR] ${JSON.stringify(err)}`)
+      	console.error(`[editMile][ERROR] ${JSON.stringify(err)}`)
       	next({ status: 500, message: "internal_server_error" })
     })
 }
