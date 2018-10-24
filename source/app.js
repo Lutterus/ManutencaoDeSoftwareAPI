@@ -34,7 +34,7 @@ const startApp = () => {
     .use(passport.initialize())
     .use(passport.session())
     .use('/api/docs', docs.serve, docs.setup)
-    .get('/api/getPrograms/:id_user', routes.getPrograms, routes.getMiles)//routes.authenticate
+    .get('/api/getPrograms/:id_user', routes.authenticate, routes.getPrograms, routes.getMiles)
     .get('/api/user', routes.authenticate, routes.getCurrentUser)
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
     .get('/api/getAllUsersMiles/:page', routes.authenticate, routes.getAllUsersMiles)
