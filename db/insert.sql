@@ -1,6 +1,6 @@
-INSERT INTO usuarios (`email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES ("fulano@hotmail.com", "fulano", 111111111, 90, 90, 1);
-INSERT INTO usuarios (`email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES ("ciclano@hotmail.com", "ciclano", 222222222, 90, 90, 1);
-INSERT INTO usuarios (`email`, `nome`, `telefone`, `aviso_expiracao_telefone`, `aviso_expiracao_email`, `oferta_compra`) VALUES ("beltrano@hotmail.com", "beltrano", 333333333, 0, 0, 0);
+INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("fulano@hotmail.com", "fulano", 111111111);
+INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("ciclano@hotmail.com", "ciclano", 222222222);
+INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("beltrano@hotmail.com", "beltrano", 333333333);
 
 INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("fulano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "fulano"));
 INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("ciclano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "ciclano"));

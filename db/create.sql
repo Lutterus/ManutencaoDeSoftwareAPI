@@ -6,9 +6,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
   `email` VARCHAR(45) NOT NULL,
   `nome` VARCHAR(300) NOT NULL,
   `telefone` INT NULL,
-  `aviso_expiracao_telefone` INT NULL,
-  `aviso_expiracao_email` INT NULL,
-  `oferta_compra` INT NOT NULL,
   PRIMARY KEY (`cod_usuario`))
   AUTO_INCREMENT=1000;
   

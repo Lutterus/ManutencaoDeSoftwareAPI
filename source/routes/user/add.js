@@ -9,10 +9,7 @@ const addUser = (Usuario, Conta) => (req, res, next) => {
 			 	Usuario.create({
 		  			email: req.body.email,
 		  			nome: req.body.nome,
-		  			telefone: req.body.telefone,
-		  			aviso_expiracao_telefone: req.body.avisoExpiracaoTelefone,
-		  			aviso_expiracao_email: req.body.avisoExpiracaoEmail,
-		  			oferta_compra: req.body.ofertaCompra
+		  			telefone: req.body.telefone
 		  		}).then(createdUser => {
 		  			Conta.create({
 		  				login: createdUser.dataValues.email,
