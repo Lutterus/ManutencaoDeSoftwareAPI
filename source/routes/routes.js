@@ -1,4 +1,5 @@
 // Routes
+const updateProgramMiles = require('./programs/update.miles')
 const addMile = require('./miles/add')
 const editMile = require('./miles/edit')
 const deleteMile = require('./miles/delete')
@@ -17,6 +18,7 @@ const resetPassword = require('./user/resetPassword')
 
 module.exports = models => ({
   authenticate: authenticate(),
+  updateProgramMiles: updateProgramMiles(models.Programa, models.Milha),
   addMile: addMile(models.Milha, models.Programa),
   editMile: editMile(models.Milha),
   deleteMile: deleteMile(models.Milha),

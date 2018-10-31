@@ -1,7 +1,7 @@
 const getUsers = (Usuario, Programa, ProgramaDefault, Milha) => (req, res, next) => {
 
   Usuario.findAll({ 
-    include: [{ 
+    include: [{  
       model: ProgramaDefault
     }],
     where: {
