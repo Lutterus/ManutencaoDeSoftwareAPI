@@ -44,6 +44,7 @@ const startApp = () => {
     .post('/api/deleteMile', routes.deleteMile) // routes.authenticate
     .post('/api/addUser', routes.authenticate, routes.addUser)
     .post('/api/login', passport.authenticate('local', { successRedirect: '/api/user' }))
+    .post('/api/resetPassword', routes.resetPassword)
     .use(routes.errorHandler)
     .use(routes.notFound)
     .listen(PORT, () => {

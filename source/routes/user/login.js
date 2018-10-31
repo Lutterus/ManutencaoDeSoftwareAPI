@@ -6,6 +6,7 @@ const login = Conta => (req, res, next) => {
 	  		} 
   		})
 	    .then(conta => {
+			console.log("aaaaaaaaaaaa")
 	      	if(conta != null) {
 	      		res.writeHead(200, {'Content-Type': 'text/html'});
 				res.end('SUCCESS');

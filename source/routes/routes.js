@@ -12,6 +12,7 @@ const login = require('./user/login')
 const notFound = require('./utils/404')
 const errorHandler = require('./utils/errorHandler')
 const authenticate = require('./auth/authenticate')
+const resetPassword = require('./user/resetPassword')
 // Dependencies
 
 module.exports = models => ({
@@ -27,6 +28,7 @@ module.exports = models => ({
   getMiles: getMiles(models.Milha),
   login: login(models.Conta),
   errorHandler: errorHandler(),
-  notFound: notFound()
+  notFound: notFound(),
+  resetPassword: resetPassword()
 
 })
