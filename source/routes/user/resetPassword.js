@@ -14,12 +14,13 @@ const resetPassword = () => (req, res, next) => {
     from: emailSuperMilhas,
     to: email,
     subject: 'Super Milhas, redefinição de senha',
-    text: 'NÃO RESPONDA ESSA MENSAGEM \nRecebemos uma solicitação de redefinição da senha vinculada a esse e-mail no nosso aplicativo. Se realmente foi você, finalize a redefinição através deste link: www.umSite.com.br'
+    text: 'NÃO RESPONDA ESTA MENSAGEM \nRecebemos uma solicitação de redefinição da senha vinculada a este e-mail no nosso aplicativo. Se realmente foi você, finalize a redefinição através deste link: www.umSite.com.br'
     };
 
     transporter.sendMail(mailOptions, function(error, info){
     if (error) {
         console.log("ERROR: " + error);
+        //em caso de erro, marcar como positivo a opção neste site https://www.google.com/settings/security/lesssecureapps
     } else {
         console.log('Email sent: ' + info.response);
     }

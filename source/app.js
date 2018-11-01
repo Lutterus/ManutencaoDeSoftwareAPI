@@ -34,15 +34,15 @@ const startApp = () => {
     .use(passport.initialize())
     .use(passport.session())
     .use('/api/docs', docs.serve, docs.setup)
-    .get('/api/getPrograms/:id_user', routes.getPrograms, routes.getMiles) // routes.authenticate
+    .get('/api/getPrograms/:id_user', routes.authenticate, routes.getPrograms, routes.getMiles) 
     .get('/api/user', routes.authenticate, routes.getCurrentUser)
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
-    .get('/api/getAllUsersMiles/:page', routes.getAllUsersMiles) // , routes.authenticate
-    .get('/api/getMiles/:id_user/:cod_program', routes.getMiles) // routes.authenticate
-    .post('/api/updateProgramMiles', routes.updateProgramMiles) // routes.authenticate
-    .post('/api/addMile', routes.addMile, routes.updateProgramMiles) // routes.authenticate,
-    .post('/api/editMile', routes.editMile, routes.updateProgramMiles) // routes.authenticate
-    .post('/api/deleteMile', routes.deleteMile, routes.updateProgramMiles) // routes.authenticate
+    .get('/api/getAllUsersMiles/:page', routes.authenticate, routes.getAllUsersMiles) 
+    .get('/api/getMiles/:id_user/:cod_program', routes.authenticate, routes.getMiles) 
+    .post('/api/updateProgramMiles', routes.authenticate, routes.updateProgramMiles) 
+    .post('/api/addMile', routes.authenticate, routes.addMile, routes.updateProgramMiles) 
+    .post('/api/editMile', routes.authenticate, routes.editMile, routes.updateProgramMiles) 
+    .post('/api/deleteMile', routes.authenticate, routes.deleteMile, routes.updateProgramMiles) 
     .post('/api/addUser', routes.authenticate, routes.addUser)
     .post('/api/login', passport.authenticate('local', { successRedirect: '/api/user' }))
     .post('/api/resetPassword', routes.resetPassword)
