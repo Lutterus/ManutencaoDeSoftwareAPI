@@ -22,6 +22,7 @@ const addMiles = (Milha, Programa) => (req, res, next) => {
 					contaLogin: createdProgram.dataValues.contaLogin
 				})
 				.then(mile => {
+					next()
 				  	console.log('[addMiles] SUCESS!')
 				  	res.writeHead(201, {'Content-Type': 'text/html'});
 					res.end('CREATED');
@@ -37,6 +38,7 @@ const addMiles = (Milha, Programa) => (req, res, next) => {
 				contaLogin: req.body.user
 			})
 			.then(mile => {
+				next()
 			  	console.log('[addMiles] SUCESS!')
 			  	res.writeHead(201, {'Content-Type': 'text/html'});
 				res.end('CREATED');

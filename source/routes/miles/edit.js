@@ -6,17 +6,18 @@ const editMile = (Milha) => (req, res, next) => {
 
   		} }).then(mile => {
 
-  		if(mile != null) {
+  		if(mile != null && req.body.program) {
 
   			var qty =  req.body.quantidade
   			var dt_expiracao = req.body.dt_expiracao
 
   			if(qty != null && dt_expiracao != null) {
   				mile.update({
-  					quantidade: qty,
-  					dt_expiracao: dt_expiracao
-				})
+  					 quantidade: qty,
+  					 dt_expiracao: dt_expiracao
+				  })
 				.then(() => {
+          next()
 					console.log('[editMile] SUCESS!')
 					res.writeHead(200, {'Content-Type': 'text/html'});
 					res.end('EDITED');
@@ -24,12 +25,12 @@ const editMile = (Milha) => (req, res, next) => {
 
   			} else {
   				res.writeHead(404, {'Content-Type': 'text/html'});
-				res.end('EMPTY FIELDS');
+				  res.end('EMPTY FIELDS');
   			}
   			
 	  	} else {
 	  		res.writeHead(404, {'Content-Type': 'text/html'});
-			res.end('MILE NOT FOUND');
+			  res.end('MILE NOT FOUND OR PROGRAM CODE EMPTY');
 	  	}
   		
 	})

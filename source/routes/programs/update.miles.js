@@ -1,9 +1,10 @@
 const updateProgramMiles = (Programa, Milha) => (req, res, next) => {
-
+	console.log(req.body.cod_programa)
   	Programa.findOne({ 
+
   		where: {
-  			cod_programa: req.body.cod_programa,
-  			contaLogin: req.body.contaLogin
+  			$or: [{nome: req.body.program}, {cod_programa: req.body.cod_programa}],
+  			contaLogin: req.body.user
 
   		} 
   	}).then(program => {
@@ -11,7 +12,7 @@ const updateProgramMiles = (Programa, Milha) => (req, res, next) => {
 
   		if(program == null) {
   			console.log("[updateProgramMiles] Programa não existe!")
-  			res.writeHead(404, {'Content-Type': 'text/html'});
+  			// res.writeHead(404, {'Content-Type': 'text/html'});
 			res.end('PROGRAM NOT FOUND');
   			
 	  	} else {
@@ -44,7 +45,7 @@ const updateProgramMiles = (Programa, Milha) => (req, res, next) => {
   					 milha_expiracao_maisProxima: mileCode
 				}).then(() => {
 					console.log('[updateProgramMiles] SUCESS!')
-					res.writeHead(200, {'Content-Type': 'text/html'});
+					// res.writeHead(200, {'Content-Type': 'text/html'});
 					res.end('UPDATED');
 				})
           	})

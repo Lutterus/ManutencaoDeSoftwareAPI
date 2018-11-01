@@ -9,18 +9,19 @@ const deleteMile = (Milha) => (req, res, next) => {
 
     .then(mile => {
 
-  		if(mile != null) {
+  		if(mile != null && req.body.program) {
 
   			return mile.destroy();
 
 	  	} else {
 
 	  		res.writeHead(404, {'Content-Type': 'text/html'});
-			  res.end('NOT FOUND');
+			  res.end('NOT FOUND OR PROGRAM CODE EMPTY');
   		}
 	 })
 
    .then(() => {
+      next()
  		  console.log('[deleteMile] SUCESS!')
 			  res.writeHead(200, {'Content-Type': 'text/html'});
 				res.end('DELETED');
