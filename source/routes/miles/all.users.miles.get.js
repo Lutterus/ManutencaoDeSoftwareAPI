@@ -3,8 +3,19 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res) => {
   let limit = 7;   // number of records per page
   let offset = 0;
 
-  Milha.findAndCountAll()
-    .then(data => {
+  Milha.findAndCountAll({
+      include: [
+          { model: Usuario },
+          { model: Programa }
+      ],
+      where: {
+          $or: [
+              {'$Usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
+              {'$Usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
+          ]
+      }
+  })
+  .then(data => {
       let page = req.params.page;      // page number
       let pages = Math.ceil(data.count / limit);
       offset = limit * (page - 1);
@@ -13,6 +24,12 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res) => {
           { model: Usuario },
           { model: Programa }
         ],
+        where: {
+            $or: [
+                {'$Usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
+                {'$Usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
+            ]
+        },
         order: [
             ['dt_expiracao', 'DESC']
         ],
@@ -25,7 +42,8 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res) => {
       });
     })
     .catch(err => {
-      console.error(`[ERROR] ${JSON.stringify(err)}`)
+      console.error('[ERROR] ' + err)
+      //console.error(`[ERROR] ${JSON.stringify(err)}`)
       next({ status: 500, message: "internal_server_error" })
     })
 }
