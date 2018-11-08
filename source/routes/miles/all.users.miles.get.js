@@ -10,8 +10,8 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res, next) => {
       ],
       where: {
           $or: [
-              {'$Usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
-              {'$Usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
+              {'$usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
+              {'$usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
           ]
       }
   })
@@ -26,8 +26,8 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res, next) => {
         ],
         where: {
             $or: [
-                {'$Usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
-                {'$Usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
+                {'$usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
+                {'$usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
             ]
         },
         order: [
@@ -42,8 +42,7 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res, next) => {
       });
     })
     .catch(err => {
-      console.error('[ERROR] ' + err)
-      //console.error(`[ERROR] ${JSON.stringify(err)}`)
+      console.error(`[ERROR] ${JSON.stringify(err)}`)
       next({ status: 500, message: "internal_server_error" })
     })
 }
