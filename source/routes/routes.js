@@ -29,7 +29,7 @@ module.exports = models => ({
   getPrograms: getPrograms(models.Programa, models.ProgramaDefault, models.Milha),
   getProgramsDefault: getProgramsDefault(models.ProgramaDefault),
   getAllUsersMiles: getAllUsersMiles(models.Milha, models.Usuario, models.Programa),
-  getMiles: getMiles(models.Milha),
+  getMiles: getMiles(models.Milha, models.Programa),
   getMile: getMile(models.Milha, models.Programa),
   login: login(models.Conta),
   errorHandler: errorHandler(),

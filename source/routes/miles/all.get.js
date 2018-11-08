@@ -1,9 +1,16 @@
-const getMiles = Milha => (req, res) => {
+const getMiles = (Milha, Programa) => (req, res) => {
 	const id_user = req.params.id_user 
-	const cod_program = req.params.cod_program 
-  Milha.findAll({ 
+  const nome_program = req.params.cod_program 
+
+  Programa.findOne({
+    where: {
+      nome: nome_program, contaLogin: id_user
+    } 
+  }).then( programas => {
+    console.log(programas)
+    Milha.findAll({ 
   		where: {
-  			contaLogin: id_user, cod_programa: cod_program
+  			contaLogin: id_user, cod_programa: programas.cod_programa
   		},
   		order: [
             ['dt_expiracao', 'DESC']
@@ -17,6 +24,7 @@ const getMiles = Milha => (req, res) => {
       console.error(`[ERROR] ${JSON.stringify(err)}`)
       next({ status: 500, message: "internal_server_error" })
     })
+  })
 }
 
 module.exports = getMiles
