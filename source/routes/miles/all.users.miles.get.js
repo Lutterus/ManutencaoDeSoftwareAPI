@@ -1,4 +1,4 @@
-const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res) => {
+const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res, next) => {
 
   let limit = 7;   // number of records per page
   let offset = 0;
