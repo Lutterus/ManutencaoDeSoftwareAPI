@@ -2,18 +2,19 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res, next) => {
 
   let limit = 7;   // number of records per page
   let offset = 0;
-
+  const WHERE = {}
+  if (req.params.searchCriteria && req.params.searchCriteria != 'all'){
+    WHERE['$or'] = [
+        { '$usuario.email$': { $like: '%' + req.params.searchCriteria + '%' } },
+        { '$usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' } }
+    ]
+  }
   Milha.findAndCountAll({
       include: [
           { model: Usuario },
           { model: Programa }
       ],
-      where: {
-          $or: [
-              {'$usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
-              {'$usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
-          ]
-      }
+      where: WHERE
   })
   .then(data => {
       let page = req.params.page;      // page number
@@ -24,12 +25,7 @@ const getAllUsersMiles = (Milha, Usuario, Programa) => (req, res, next) => {
           { model: Usuario },
           { model: Programa }
         ],
-        where: {
-            $or: [
-                {'$usuario.email$': { $like: '%' + req.params.searchCriteria + '%' }},
-                {'$usuario.nome$': { $like: '%' + req.params.searchCriteria + '%' }}
-            ]
-        },
+        where: WHERE,
         order: [
             ['dt_expiracao', 'DESC']
         ],
