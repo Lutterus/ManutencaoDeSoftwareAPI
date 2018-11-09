@@ -20,10 +20,13 @@ passport.deserializeUser((user, done) => done(null, user))
 
 const startApp = () => {
   const app = express()
-  
+
   app
     .set('json spaces', 2)
-    .use(cors())
+    .use(cors({
+      origin: 'http://localhost:8080',
+      credentials: true
+    }))
     .use(express.static(__dirname + '/public'))
     .use(bodyParser.json())
     .use(session({
@@ -34,16 +37,16 @@ const startApp = () => {
     .use(passport.initialize())
     .use(passport.session())
     .use('/api/docs', docs.serve, docs.setup)
-    .get('/api/getPrograms/:id_user', routes.authenticate, routes.getPrograms, routes.getMiles) 
+    .get('/api/getPrograms/:id_user', routes.authenticate, routes.getPrograms, routes.getMiles)
     .get('/api/user', routes.authenticate, routes.getCurrentUser)
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
-    .get('/api/getAllUsersMiles/:page/:searchCriteria', routes.authenticate, routes.getAllUsersMiles) 
-    .get('/api/getMiles/:id_user/:cod_program', routes.authenticate, routes.getMiles) 
-    .get('/api/getMile/:id_user/:cod_mile', routes.getMile, routes.getPrograms) 
-    .post('/api/updateProgramMiles', routes.authenticate, routes.updateProgramMiles) 
-    .post('/api/addMile', routes.authenticate, routes.addMile, routes.updateProgramMiles) 
-    .post('/api/editMile', routes.authenticate, routes.editMile, routes.updateProgramMiles) 
-    .post('/api/deleteMile', routes.authenticate, routes.deleteMile, routes.updateProgramMiles) 
+    .get('/api/getAllUsersMiles/:page/:searchCriteria', routes.authenticate, routes.getAllUsersMiles)
+    .get('/api/getMiles/:id_user/:cod_program', routes.authenticate, routes.getMiles)
+    .get('/api/getMile/:id_user/:cod_mile', routes.getMile, routes.getPrograms)
+    .post('/api/updateProgramMiles', routes.authenticate, routes.updateProgramMiles)
+    .post('/api/addMile', routes.authenticate, routes.addMile, routes.updateProgramMiles)
+    .post('/api/editMile', routes.authenticate, routes.editMile, routes.updateProgramMiles)
+    .post('/api/deleteMile', routes.authenticate, routes.deleteMile, routes.updateProgramMiles)
     .post('/api/addUser', routes.authenticate, routes.addUser)
     .post('/api/login', passport.authenticate('local', { successRedirect: '/api/user' }))
     .post('/api/resetPassword', routes.resetPassword)
@@ -51,7 +54,7 @@ const startApp = () => {
     .use(routes.notFound)
     .listen(PORT, () => {
       console.log(`Started application at port: ${PORT}`)
-    })  
+    })
 }
 
 db_connection.sync()
