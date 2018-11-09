@@ -63,4 +63,9 @@ CREATE TABLE IF NOT EXISTS milhas (
         REFERENCES programas (`contaLogin`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 )
+
+create event remove_old_miles
+on schedule every 24 hour
+do delete from milhas where dt_expiracao < curdate() - 10;
+
 AUTO_INCREMENT=1000;
