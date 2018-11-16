@@ -2,9 +2,9 @@ INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("fulano@hotmail.com",
 INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("ciclano@hotmail.com", "ciclano", 222222222);
 INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("beltrano@hotmail.com", "beltrano", 333333333);
 
-INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("fulano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "fulano"));
-INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("ciclano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "ciclano"));
-INSERT INTO contas (`login`, `senha`, `cod_usario`) VALUES ("beltrano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "beltrano"));
+INSERT INTO contas (`login`, `senha`, `cod_usuario`, `is_admin`) VALUES ("fulano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "fulano"), false);
+INSERT INTO contas (`login`, `senha`, `cod_usuario`, `is_admin`) VALUES ("ciclano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "ciclano"), false);
+INSERT INTO contas (`login`, `senha`, `cod_usuario`, `is_admin`) VALUES ("beltrano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "beltrano"), false);
 
 INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("Livelo", "http://emalta.com.br/wp-content/uploads/2016/10/livelo-vale-a-pena-810x519.jpg");
 INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("Smiles", "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Gol_Smiles_logo.svg/1200px-Gol_Smiles_logo.svg.png");

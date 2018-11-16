@@ -1,8 +1,8 @@
 const login = Conta => (req, res, next) => {
-	const {login, senha} = req.body
+	const {username, password} = req.body
   	Conta.findOne({ where: {
-	  			login: login, 
-	  			senha: senha
+	  			login: username, 
+	  			senha: password
 	  		} 
   		})
 	    .then(conta => {

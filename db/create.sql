@@ -5,18 +5,19 @@ CREATE TABLE IF NOT EXISTS usuarios (
   `cod_usuario` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `nome` VARCHAR(300) NOT NULL,
-  `telefone` INT NULL,
+  `telefone` INT NULL
   PRIMARY KEY (`cod_usuario`))
   AUTO_INCREMENT=1000;
   
 CREATE TABLE IF NOT EXISTS contas (
   `login` VARCHAR(45) NOT NULL,
   `senha` VARCHAR(45) NOT NULL,
-  `cod_usario` INT NOT NULL,
-  INDEX `usuarioFK_idx` (`cod_usario` ASC),
+  `cod_usuario` INT NOT NULL,
+  `is_admin` BOOLEAN NOT NULL,
+  INDEX `usuarioFK_idx` (`cod_usuario` ASC),
   PRIMARY KEY (`login`),
   CONSTRAINT `usuarioFK`
-    FOREIGN KEY (`cod_usario`)
+    FOREIGN KEY (`cod_usuario`)
     REFERENCES usuarios (`cod_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
@@ -63,9 +64,8 @@ CREATE TABLE IF NOT EXISTS milhas (
         REFERENCES programas (`contaLogin`)
         ON DELETE NO ACTION ON UPDATE NO ACTION
 )
+AUTO_INCREMENT=1000;
 
 create event remove_old_miles
 on schedule every 24 hour
 do delete from milhas where dt_expiracao < curdate() - 10;
-
-AUTO_INCREMENT=1000;

@@ -1,14 +1,16 @@
 const getMile = (Milha, Programa) => (req, res, next) => {
-	const id_user = req.params.id_user 
-    const cod_mile = req.params.cod_mile
-  Milha.findOne({ 
+
+	const id_user = req.params.id_user
+  const cod_mile = req.params.cod_mile
+
+  Milha.findOne({
   		where: {
             contaLogin: id_user,
-  			cod_milha: cod_mile
+  			    cod_milha: cod_mile
   		}
   	})
     .then(milhas => {
-        Programa.findOne({ 
+        Programa.findOne({
             where: {
                 cod_programa: milhas.dataValues.cod_programa
             }
@@ -18,7 +20,7 @@ const getMile = (Milha, Programa) => (req, res, next) => {
                 quantidade: milhas.quantidade,
                 expiracao: milhas.dt_expiracao,
                 nomePrograma: programas.nome
-              }
+            }
             res.send(response)
       })
     })

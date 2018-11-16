@@ -14,7 +14,8 @@ const addUser = (Usuario, Conta) => (req, res, next) => {
 		  			Conta.create({
 		  				login: createdUser.dataValues.email,
 		  				senha: req.body.senha,
-		  				cod_usario: createdUser.dataValues.cod_usuario
+		  				cod_usuario: createdUser.dataValues.cod_usuario,
+		  				is_admin: false
 		  			}).then(createdConta => {
 		  				console.log('[addUser] SUCESS!')
 				  		res.writeHead(201, {'Content-Type': 'text/html'});
@@ -23,6 +24,8 @@ const addUser = (Usuario, Conta) => (req, res, next) => {
 		  		})
 		  	} else {
 		  		console.log("[addUser] usuário já existe!")
+		  		res.writeHead(404, {'Content-Type': 'text/html'});
+				res.end('USER ALREADY EXISTS');
 		  	}
   		
 	}).catch(err => {
