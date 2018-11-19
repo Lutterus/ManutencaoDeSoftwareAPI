@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
   `cod_usuario` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
   `nome` VARCHAR(300) NOT NULL,
-  `telefone` INT NULL
+  `telefone` INT NULL,
   PRIMARY KEY (`cod_usuario`))
   AUTO_INCREMENT=1000;
   
