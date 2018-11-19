@@ -9,7 +9,7 @@ module.exports = db => {
        },
        email: sequelize.STRING,
        nome: sequelize.STRING,
-       telefone: sequelize.INTEGER
+       telefone: sequelize.STRING
     }, {
         timestamps  : false
     })
