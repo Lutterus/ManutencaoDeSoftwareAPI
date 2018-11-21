@@ -15,6 +15,8 @@ const notFound = require('./utils/404')
 const errorHandler = require('./utils/errorHandler')
 const authenticate = require('./auth/authenticate')
 const resetPassword = require('./password/resetPassword')
+const getResetPassword = require('./password/getResetPassword')
+const postResetPassword = require('./password/postResetPassword')
 
 // Dependencies
 
@@ -34,6 +36,8 @@ module.exports = models => ({
   login: login(models.Conta),
   errorHandler: errorHandler(),
   notFound: notFound(),
-  resetPassword: resetPassword(models.Esqueci_senha, models.Usuario)
+  resetPassword: resetPassword(models.Esqueci_senha, models.Usuario),
+  getResetPassword: getResetPassword(models.Esqueci_senha),
+  postResetPassword: postResetPassword(models.Conta)
 
 })

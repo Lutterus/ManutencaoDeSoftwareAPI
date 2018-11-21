@@ -1,6 +1,6 @@
 const resetPassword = (Esqueci_senha, Usuario) => (req, res, next) => {
     const emailSuperMilhas = "o email a ser usado"
-    const senhaSuperMilhas = "a senha do email a ser suado"
+    const senhaSuperMilhas = "a senha do email a ser usado"
     const emailUser = req.body.email;
     var nodemailer = require('nodemailer')
     const URL = 'www.umSite.com/changePassword/'
