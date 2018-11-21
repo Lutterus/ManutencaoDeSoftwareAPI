@@ -42,7 +42,7 @@ const startApp = () => {
     .get('/api/getProgramsDefault', routes.getProgramsDefault)
     .get('/api/getAllUsersMiles/:page/:searchCriteria', routes.authenticate, routes.getAllUsersMiles)
     .get('/api/getMiles/:id_user/:cod_program', routes.authenticate, routes.getMiles)
-    .get('/api/getMile/:id_user/:cod_mile', routes.getMile, routes.getPrograms)
+    .get('/api/getMile/:id_user/:cod_mile', routes.authenticate, routes.getMile)
     .post('/api/updateProgramMiles', routes.authenticate, routes.updateProgramMiles)
     .post('/api/addMile', routes.authenticate, routes.addMile, routes.updateProgramMiles)
     .post('/api/editMile', routes.authenticate, routes.editMile, routes.updateProgramMiles)

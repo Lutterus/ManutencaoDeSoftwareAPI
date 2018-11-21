@@ -3,7 +3,7 @@ USE super_milhas;
 
 CREATE TABLE IF NOT EXISTS usuarios (
   `cod_usuario` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(450) NOT NULL,
   `nome` VARCHAR(300) NOT NULL,
   `telefone` VARCHAR(20) NULL,
   PRIMARY KEY (`cod_usuario`))
@@ -66,6 +66,17 @@ CREATE TABLE IF NOT EXISTS milhas (
 )
 AUTO_INCREMENT=1000;
 
+CREATE TABLE IF NOT EXISTS esquecimento_senhas (
+  `idesqueci_senha` INT NOT NULL,
+  `email` VARCHAR(450) NOT NULL,
+  `token` VARCHAR(450) NOT NULL,
+  `dt_criacao` DATE NOT NULL,
+  PRIMARY KEY (`idesqueci_senha`));
+
 create event remove_old_miles
 on schedule every 24 hour
 do delete from milhas where dt_expiracao < curdate() - 10;
+
+create event remove_old_expiration_tokens
+on schedule every 24 hour
+do delete from esquecimento_senhas where dt_criacao < curdate();
