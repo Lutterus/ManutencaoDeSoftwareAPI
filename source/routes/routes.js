@@ -38,6 +38,6 @@ module.exports = models => ({
   notFound: notFound(),
   resetPassword: resetPassword(models.Esqueci_senha, models.Usuario),
   getResetPassword: getResetPassword(models.Esqueci_senha),
-  postResetPassword: postResetPassword(models.Conta)
+  postResetPassword: postResetPassword(models.Conta, models.Esqueci_senha)
 
 })
