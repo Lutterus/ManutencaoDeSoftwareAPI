@@ -1,10 +1,10 @@
 INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("fulano@hotmail.com", "fulano", "111111111");
 INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("ciclano@hotmail.com", "ciclano", "222222222");
-INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("beltrano@hotmail.com", "beltrano", "333333333");
+INSERT INTO usuarios (`email`, `nome`, `telefone`) VALUES ("luttbitelo@gmail.com", "beltrano", "333333333");
 
 INSERT INTO contas (`login`, `senha`, `cod_usuario`, `is_admin`) VALUES ("fulano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "fulano"), false);
 INSERT INTO contas (`login`, `senha`, `cod_usuario`, `is_admin`) VALUES ("ciclano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "ciclano"), false);
-INSERT INTO contas (`login`, `senha`, `cod_usuario`, `is_admin`) VALUES ("beltrano@hotmail.com", 123, (select cod_usuario from usuarios where nome = "beltrano"), false);
+INSERT INTO contas (`login`, `senha`, `cod_usuario`, `is_admin`) VALUES ("luttbitelo@gmail.com", 123, (select cod_usuario from usuarios where nome = "beltrano"), false);
 
 INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("Livelo", "http://emalta.com.br/wp-content/uploads/2016/10/livelo-vale-a-pena-810x519.jpg");
 INSERT INTO programa_defaults(`nome`,`imagem`) VALUES("Smiles", "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Gol_Smiles_logo.svg/1200px-Gol_Smiles_logo.svg.png");
@@ -15,16 +15,16 @@ INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `con
 INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("Smiles", 5000, 1002, "fulano@hotmail.com", 123);
 INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("Smiles", 5000, 1006, "ciclano@hotmail.com", 123);
 INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("Azul", 5000, 1010, "ciclano@hotmail.com", 123);
-INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("Azul", 6000, 1004, "beltrano@hotmail.com", 123);
+INSERT INTO programas (`nome`, `somaMilhas`, `milha_expiracao_maisProxima`, `contaLogin`, `contaSenha`) VALUES ("Azul", 6000, 1004, "luttbitelo@hotmail.com", 123);
 
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181215, (select cod_programa from programas where nome = "Livelo" and contaLogin = "fulano@hotmail.com"), "fulano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181214, (select cod_programa from programas where nome = "Livelo" and contaLogin = "fulano@hotmail.com"), "fulano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181218, (select cod_programa from programas where nome = "Smiles" and contaLogin = "fulano@hotmail.com"), "fulano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181213, (select cod_programa from programas where nome = "Livelo" and contaLogin = "ciclano@hotmail.com"), "ciclano@hotmail.com");
-INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181212, (select cod_programa from programas where nome = "Azul" and contaLogin = "beltrano@hotmail.com"), "ciclano@hotmail.com");
+INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181212, (select cod_programa from programas where nome = "Azul" and contaLogin = "luttbitelo@gmail.com"), "luttbitelo@gmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2500, 20181211, (select cod_programa from programas where nome = "Smiles" and contaLogin = "ciclano@hotmail.com"), "ciclano@hotmail.com");
 INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2500, 20181210, (select cod_programa from programas where nome = "Smiles" and contaLogin = "ciclano@hotmail.com"), "ciclano@hotmail.com");
-INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181209, (select cod_programa from programas where nome = "Azul" and contaLogin = "ciclano@hotmail.com"), "beltrano@hotmail.com");
-INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181208, (select cod_programa from programas where nome = "Azul" and contaLogin = "ciclano@hotmail.com"), "beltrano@hotmail.com");
-INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181207, (select cod_programa from programas where nome = "Azul" and contaLogin = "ciclano@hotmail.com"), "beltrano@hotmail.com");
-INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181206, (select cod_programa from programas where nome = "Azul" and contaLogin = "ciclano@hotmail.com"), "beltrano@hotmail.com");
+INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (5000, 20181209, (select cod_programa from programas where nome = "Azul" and contaLogin = "luttbitelo@gmail.com"), "luttbitelo@hotmail.com");
+INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181208, (select cod_programa from programas where nome = "Azul" and contaLogin = "luttbitelo@gmail.com"), "luttbitelo@gmail.com");
+INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181207, (select cod_programa from programas where nome = "Azul" and contaLogin = "luttbitelo@gmail.com"), "luttbitelo@gmail.com");
+INSERT INTO milhas (`quantidade`, `dt_expiracao`, `cod_programa`, `contaLogin`) VALUES (2000, 20181206, (select cod_programa from programas where nome = "Azul" and contaLogin = "luttbitelo@gmail.com"), "luttbitelo@gmail.com");

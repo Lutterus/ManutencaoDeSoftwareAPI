@@ -1,16 +1,19 @@
+const { EMAIL_SUPER_MILHAS, SENHA_SUPER_MILHAS, URL_WEB } = require('../../../emailSettings.js') 
 const resetPassword = (Esqueci_senha, Usuario) => (req, res, next) => {
-    const emailSuperMilhas = "o email a ser usado"
-    const senhaSuperMilhas = "a senha do email a ser usado"
+    const emailSuperMilhas = EMAIL_SUPER_MILHAS
+    const senhaSuperMilhas = SENHA_SUPER_MILHAS
     const emailUser = req.body.email;
     var nodemailer = require('nodemailer')
-    const URL = 'www.umSite.com/changePassword/'
+    const URL = URL_WEB
     const emailServico = 'gmail'
 
     Usuario.findOne({ where: {email: emailUser}
     }).then(user => { 
+        console.log(emailSuperMilhas)
+        console.log(senhaSuperMilhas)
         if(user===null){
-            console.error(`Usuario nao encontrado `)
-            next({ status: 500, message: "internal_server_error" })
+            console.error(`[addUser][ERROR] ${JSON.stringify(err)}`)
+      	    next({ status: 500, message: "internal_server_error" })
         }else{
             Esqueci_senha.findOne({ where: {
                 email: emailUser
@@ -36,7 +39,7 @@ const resetPassword = (Esqueci_senha, Usuario) => (req, res, next) => {
                                 from: emailSuperMilhas,
                                 to: emailUser,
                                 subject: 'Super Milhas, redefinição de senha',
-                                text: 'NÃO RESPONDA ESTA MENSAGEM \nRecebemos uma solicitação de redefinição da senha vinculada a este e-mail no nosso aplicativo. Se realmente foi você, finalize a redefinição através deste link: ' + URL+confirm.token
+                                text: 'NÃO RESPONDA ESTA MENSAGEM \nRecebemos uma solicitação de redefinição da senha vinculada a este e-mail no nosso aplicativo. Se realmente foi você, finalize a redefinição através deste link: \n' + URL+confirm.token
                                 };
                             
                                 transporter.sendMail(mailOptions, function(error, info){
@@ -64,7 +67,7 @@ const resetPassword = (Esqueci_senha, Usuario) => (req, res, next) => {
                         from: emailSuperMilhas,
                         to: emailUser,
                         subject: 'Super Milhas, redefinição de senha',
-                        text: 'NÃO RESPONDA ESTA MENSAGEM \nRecebemos uma solicitação de redefinição da senha vinculada a este e-mail no nosso aplicativo. Se realmente foi você, finalize a redefinição através deste link: ' + URL+tempRequest.token
+                        text: 'NÃO RESPONDA ESTA MENSAGEM \nRecebemos uma solicitação de redefinição da senha vinculada a este e-mail no nosso aplicativo. Se realmente foi você, finalize a redefinição através deste link: \n' + URL+tempRequest.token
                         };
                     
                         transporter.sendMail(mailOptions, function(error, info){
