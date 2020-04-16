@@ -21,7 +21,7 @@ const getPrograms = (Programa, ProgramaDefault, Milha) => (req, res, next) => {
               cod_programa: programa.dataValues.cod_programa,
               nome: programa.dataValues.nome,
               somaMilhas: programa.dataValues.somaMilhas,
-              milha_expiracao_maisProxima: milha.dataValues,
+              //milha_expiracao_maisProxima: milha.dataValues,
               contaLogin: programa.dataValues.contaLogin,
               contaSenha: programa.dataValues.contaSenha,
               programa_default: programa.dataValues.programa_default
