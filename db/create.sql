@@ -1,3 +1,6 @@
+mysql -u root -p
+drop database super_milhas;
+
 CREATE DATABASE super_milhas;
 USE super_milhas;
 
